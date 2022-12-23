@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Файлы и папки</title>
+</head>
+<body>
+    <ul>Содержимое рабочей директории
+    {% for el in all_files %}
+
+        <li>
+            {{ el }}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
