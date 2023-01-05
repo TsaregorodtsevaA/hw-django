@@ -19,11 +19,6 @@ DATA = {
     },
     # можете добавить свои рецепты ;)
 }
-# for el in DATA['omlet'].values():
-#     print(el*5)
-for new_k, new_v in DATA['omlet'].items():
-    new_dict = {f'{new_k}':new_v*1}
-    print(new_dict)
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
@@ -34,16 +29,43 @@ for new_k, new_v in DATA['omlet'].items():
 #     'ингредиент2': количество2,
 #   }
 # }
-#
+
+
 def omlet(request):
-    # number = request.GET['number']
-    context = {'recipe': DATA['omlet']}
-    return render(request, 'calculator/index.html', context)
+    if request.GET:
+        number = int(request.GET.get('servings'))
+        new_dict = {}
+        for k, v in DATA['omlet'].items():
+            new_dict[k] = v * number
+        context = { 'recipe': new_dict}
+        return render(request, 'calculator/index.html', context)
+    else:
+        context = {'recipe': DATA['omlet']}
+        return render(request, 'calculator/index.html', context)
+
+
 def pasta(request):
-    context = {'recipe' : DATA['pasta']}
-    return render(request, 'calculator/index.html', context)
+    if request.GET:
+        number = int(request.GET.get('servings'))
+        new_dict = {}
+        for k, v in DATA['pasta'].items():
+            new_dict[k] = v * number
+        context = { 'recipe': new_dict}
+        return render(request, 'calculator/index.html', context)
+    else:
+        context = {'recipe': DATA['pasta']}
+        return render(request, 'calculator/index.html', context)
+
 
 def buter(request):
-    context = {'recipe': DATA['buter']}
-    return render(request, 'calculator/index.html', context)
+    if request.GET:
+        number = int(request.GET.get('servings'))
+        new_dict = {}
+        for k, v in DATA['buter'].items():
+            new_dict[k] = v * number
+        context = { 'recipe': new_dict}
+        return render(request, 'calculator/index.html', context)
+    else:
+        context = {'recipe': DATA['buter']}
+        return render(request, 'calculator/index.html', context)
 
